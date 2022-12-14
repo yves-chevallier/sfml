@@ -1,0 +1,5 @@
+EXEC=remanence
+all: $(EXEC)
+
+$(EXEC): remanence.cpp
+	g++ -o $@ $< -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lboost_system
