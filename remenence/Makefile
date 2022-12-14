@@ -1,4 +1,4 @@
-EXEC=remanence
+EXEC=a.out
 all: $(EXEC)
 
 $(EXEC): remanence.cpp

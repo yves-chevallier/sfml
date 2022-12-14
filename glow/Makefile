@@ -1,4 +1,4 @@
-EXEC=glow
+EXEC=a.out
 all: $(EXEC)
 
 $(EXEC): glow.cpp

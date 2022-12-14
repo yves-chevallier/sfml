@@ -1,12 +1,11 @@
 
 uniform vec2 resolution;
-uniform float size;
-uniform vec2 tail[4];
-uniform vec2 mouse;
+uniform vec2 tail[100];
+
 void main(void) {
     vec2 p = gl_FragCoord.xy / resolution.xy;
     float d = 0.0;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 100; i++) {
         vec2 u = tail[i];
         vec2 q;
         q.x = p.x - u.x / resolution.x;

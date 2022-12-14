@@ -1,5 +1,5 @@
 EXEC=a.out
 all: $(EXEC)
 
-$(EXEC): fire.cpp
+$(EXEC): tores.cpp
 	g++ -o $@ $< -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
