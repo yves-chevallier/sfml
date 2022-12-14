@@ -18,6 +18,13 @@ int main()
 
     shader.setUniform("resolution", sf::Vector2f(winSize * scale, winSize * scale));
     shader.setUniform("size", sf::Vector2f(winSize/2, winSize/2));
+
+
+    shader.setUniform("tail", {
+        sf::Vector2f(100, 100),
+        sf::Vector2f(200, 200),
+        sf::Vector2f(300, 300),
+        sf::Vector2f(400, 400)});
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {

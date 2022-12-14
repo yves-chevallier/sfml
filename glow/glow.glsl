@@ -1,6 +1,7 @@
 
 uniform vec2 resolution;
 uniform float size;
+uniform vec2 tail[4];
 
 void main(void) {
     vec2 p = gl_FragCoord.xy;
