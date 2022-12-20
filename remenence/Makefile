@@ -1,5 +1,5 @@
 EXEC=a.out
 all: $(EXEC)
 
-$(EXEC): remanence.cpp
+$(EXEC): main.cpp
 	g++ -o $@ $< -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lboost_system

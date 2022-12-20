@@ -21,7 +21,7 @@ int main()
     tex.create(winW, winH);
     sf::Sprite spr(tex);
     sf::Shader shader;
-    shader.loadFromFile("glow.glsl", sf::Shader::Fragment);
+    shader.loadFromFile("main.glsl", sf::Shader::Fragment);
 
     while (window.isOpen())
     {
