@@ -1,4 +1,4 @@
-#version 150
+#version 140
 in vec3 pass_colour;
 out vec4 out_Colour;
 void main(void){

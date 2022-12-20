@@ -2,27 +2,21 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include <GL/glew.h>
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "Test");
 
     sf::Shader shader;
-    shader.loadFromFile("shader.vert", "shader.frag");
-    //shader.loadFromFile("shader.frag", sf::Shader::Fragment);
-    sf::Transform matrix = sf::Transform::Identity;
-    matrix.scale(1/800.f, 1/800.f);
+    shader.loadFromFile("shader.frag", sf::Shader::Fragment);
 
-    sf::CircleShape triangle(100.f, 3);
-    triangle.setFillColor(sf::Color::Red);
-    triangle.setPosition(400.f, 400.f);
-
-    sf::Glsl::Mat4 projectionViewMatrix = matrix;
-
-    shader.setUniform("projectionViewMatrix", projectionViewMatrix);
-
+    sf::Texture texture;
+    sf::RenderTexture renderTexture;
     while(window.isOpen())
     {
         sf::Event currEvent;
+        sf::Vector2f mousePos;
         while(window.pollEvent(currEvent))
         {
             switch(currEvent.type)
@@ -30,13 +24,17 @@ int main()
                 case(sf::Event::Closed):
                     window.close();
                     break;
+                case(sf::Event::MouseMoved):
+                    shader.setUniform("mouse", sf::Vector2f(currEvent.mouseMove.x, currEvent.mouseMove.y));
+                    break;
                 default:
                     break;
             }
         }
 
         window.clear(sf::Color::Black);
-        window.draw(triangle, &shader);
+
+
         window.display();
     }
 }
