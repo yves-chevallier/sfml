@@ -40,17 +40,19 @@ int main() {
         //     mousePos.x / WIDTH, 1.0 - mousePos.y / WIDTH));
 
         sf::RenderStates states;
-        states.blendMode = sf::BlendAdd;
+        //states.blendMode = sf::BlendAdd;
         states.shader = &buffer;
-
+        renderTexture.setActive(true);
         renderTexture.clear(sf::Color::Transparent);
         renderTexture.draw(sprite, states);
         renderTexture.display();
-        sprite.setTexture(renderTexture.getTexture());
+        //sprite.setTexture(window);
         texture.update(renderTexture.getTexture());
         buffer.setUniform("iChannel0", texture);
         shader.setUniform("iChannel0", texture);
 
+        window.setActive(true);
+        sprite.setTexture(texture);
         window.clear(sf::Color::Transparent);
         window.draw(sprite, &shader);
         window.display();
