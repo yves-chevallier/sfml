@@ -7,10 +7,11 @@ int main() {
     sf::Shader shader, buffer;
     shader.loadFromFile("shader.frag", sf::Shader::Fragment);
     buffer.loadFromFile("buffer.frag", sf::Shader::Fragment);
-
     sf::Shader *shaders[] = {&shader, &buffer};
+
     sf::Texture texture;
     texture.create(WIDTH, WIDTH);
+
     sf::Sprite sprite(texture);
 
     sf::RenderTexture renderTexture;
@@ -21,7 +22,11 @@ int main() {
         shader->setUniform("iChannel0", texture);
         shader->setUniform("iResolution", sf::Glsl::Vec2(WIDTH, WIDTH));
     }
+
     auto time = sf::Clock();
+
+    window.clear();
+    texture.update(window);
 
     while(window.isOpen()) {
         sf::Event currEvent;
@@ -43,9 +48,8 @@ int main() {
         renderTexture.display();
         texture.update(renderTexture.getTexture());
 
-        window.setActive(true);
         window.clear();
-        window.draw(sprite, &shader);
+        window.draw(sprite);
         window.display();
     }
 }
