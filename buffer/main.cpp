@@ -11,10 +11,10 @@ int main() {
     sf::Shader *shaders[] = {&shader, &buffer};
     sf::Texture texture;
     texture.create(WIDTH, WIDTH);
-    texture.update(window);
     sf::Sprite sprite(texture);
 
     sf::RenderTexture renderTexture;
+    renderTexture.create(WIDTH, WIDTH);
 
     sf::Vector2f mousePos = sf::Vector2f(-1.f, -1.f);
     for(auto &shader : shaders) {
@@ -35,27 +35,16 @@ int main() {
             }
         }
 
-        buffer.setUniform("iTime", time.getElapsedTime().asSeconds());
-        // buffer.setUniform("iMouse", sf::Glsl::Vec2(
-        //     mousePos.x / WIDTH, 1.0 - mousePos.y / WIDTH));
+        buffer.setUniform("iTime", (float)time.getElapsedTime().asSeconds());
+        buffer.setUniform("iMouse", sf::Glsl::Vec2(mousePos.x, WIDTH-mousePos.y));
 
-        sf::RenderStates states;
-        //states.blendMode = sf::BlendAdd;
-        states.shader = &buffer;
-        renderTexture.setActive(true);
-        renderTexture.clear(sf::Color::Transparent);
-        renderTexture.draw(sprite, states);
+        renderTexture.clear();
+        renderTexture.draw(sprite, &buffer);
         renderTexture.display();
-        //sprite.setTexture(window);
         texture.update(renderTexture.getTexture());
-        buffer.setUniform("iChannel0", texture);
-        shader.setUniform("iChannel0", texture);
 
-        window.setActive(true);
-        sprite.setTexture(texture);
-        window.clear(sf::Color::Transparent);
+        window.clear();
         window.draw(sprite, &shader);
         window.display();
-        //texture.update(window);
     }
 }
