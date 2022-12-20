@@ -36,13 +36,14 @@ int main() {
         }
 
         buffer.setUniform("iTime", (float)time.getElapsedTime().asSeconds());
-        buffer.setUniform("iMouse", sf::Glsl::Vec2(mousePos.x, WIDTH-mousePos.y));
+        buffer.setUniform("iMouse", sf::Glsl::Vec2(mousePos.x, WIDTH - mousePos.y));
 
         renderTexture.clear();
         renderTexture.draw(sprite, &buffer);
         renderTexture.display();
         texture.update(renderTexture.getTexture());
 
+        window.setActive(true);
         window.clear();
         window.draw(sprite, &shader);
         window.display();
