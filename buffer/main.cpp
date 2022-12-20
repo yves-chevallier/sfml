@@ -48,10 +48,12 @@ int main() {
         renderTexture.display();
         sprite.setTexture(renderTexture.getTexture());
         texture.update(renderTexture.getTexture());
+        buffer.setUniform("iChannel0", texture);
+        shader.setUniform("iChannel0", texture);
 
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color::Transparent);
         window.draw(sprite, &shader);
         window.display();
-        texture.update(window);
+        //texture.update(window);
     }
 }
